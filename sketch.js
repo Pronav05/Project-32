@@ -5,16 +5,15 @@ const Constraint = Matter.Constraint;
 
 var engine, world;
 var block1,stand,polygon,backgroundImg;
-var ground,polygon_img,slingshot,blackBg;
+var ground,polygon_img,slingshot,blackBg, bg;
 
 var score = 0;
 
-function preload()
-{  
+function preload(){  
   getBackgroundImg();
-  bg = loadImage("Orange.jpg");
+  //bg = loadImage("Orange.jpg");
   polygon_img = loadImage("hexa 2.jpg");
-  blackBg = loadImage("Black Background.jpg");
+  //blackBg = loadImage("BlackBackground.jpg");
 }
 
 function setup() {
@@ -57,25 +56,20 @@ function draw() {
   if (backgroundImg)
       background(backgroundImg);
 
-      noStroke();
-
   Engine.update(engine);
 
   // Dragging and Releasing
   textSize("20");
   fill("Orange");
+  noStroke();
   text("Drag the Hexagonal Stone and Release it, to launch it towards the blocks",200,50);
   
 
   // Second chance(Space key)
   text("Press SPACE to get second chance",1000,350);
-  textSize("20");
-  fill("Orange");
 
   //Score
   text("SCORE :" +score,750,40);
-  textSize("20");
-  fill("Orange");
 
   block1.display();
   block2.display();
@@ -144,19 +138,17 @@ slingshot.fly();
 }
 
 async function getBackgroundImg(){
-  var response = await fetch("http://worldtimeapi.org/api/timezone/Asia/Kolkata");
-  var responseJSON = await response.json();
+  //var response = await fetch("http://worldtimeapi.org/api/timezone/Asia/Singapore");
+  //var responseJSON = await response.json();
 
-  var datetime = responseJSON.datetime;
-  var hour = datetime.slice(11,13);
-  
-  if(hour>=0600 && hour<=1900){
-      bg = "Orange.jpg";
-  }
-  else{
-      bg = "Black Background.jpg";
-  }
+  //var hour = responseJSON.datetime.slice(11, 13);
+  //console.log(hour);
+  //if(hour>=06 && hour<=19){
+      //bg = "Orange.jpg";
+  //}
+  //else{
+      bg = "BlackBackground.jpg";
+  //}
 
   backgroundImg = loadImage(bg);
-  console.log(backgroundImg);
 }
